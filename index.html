@@ -76,8 +76,8 @@
                 }
             })
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
+            .then(data => console.log("Reset pins response:", data))
+            .catch(error => console.error('Error resetting pins:', error));
 
             // clear rickroll if it exists
             const gifContainer = document.getElementById('gif-container');
@@ -107,9 +107,10 @@
             const serverIp = "http://192.168.137.19"; // Replace with your server's IP address
             if (number === 10 || number === 1) {
                 console.log("you win this time...");
-                gifContainer.innerHTML = `<img src="${serverIp}/lose.gif" alt="You win!">`;
+                gifContainer.innerHTML = `<img src="${serverIp}/win.gif" alt="You win!">`;
             } else {
                 console.log("you lost! womp womp");
+                gifContainer.innerHTML = `<img src="${serverIp}/lose.gif" alt="You lost!">`;
             }
 
             // Make API call to run the taser or win action
@@ -121,8 +122,8 @@
                 body: JSON.stringify({ "number": number })
             })
             .then(response => response.json())
-            .then(data => console.log(data))
-            .catch(error => console.error('Error:', error));
+            .then(data => console.log("Run taser response:", data))
+            .catch(error => console.error('Error running taser:', error));
         }
     </script>
 </body>
