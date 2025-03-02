@@ -1,0 +1,1 @@
+funny component exploding thing
