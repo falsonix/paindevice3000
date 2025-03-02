@@ -10,6 +10,7 @@
 </title>
 
 <body>
+    <div id="gif-container" style="text-align: center; margin-top: 20px;"></div>
     <style>
         body {
             background-color: #E94E56;
@@ -55,9 +56,9 @@
     </h3>
 
     <h4 style="font-family: Mr Dafoe, cursive; font-weight: 400; font-style: normal; color: #ff007b;">
-        the goal of this game is to get 10 on the spinner wheel, if you get anything other than 10 you MAY be subjected to tasing
+        the goal of this game is to get 10 or 1 on the spinner wheel, if you get anything other than 10 you MAY be subjected to tasing
 
-        and yes the spinner can in fact land on 10, it's just rare
+        and yes the spinner can in fact land on the winning numbers, it's just rare
     </h4>
     <div class="slot-container" style="font-family: Mr Dafoe, cursive; font-weight: 400; font-style: normal; color: #ff007b;">
         <div class="slot-number">0</div>
@@ -87,13 +88,14 @@
 
         function triggerRaspberryPi(number) {
             console.log("Slot landed on:", number);
-            if (number === 10) {
+            const gifContainer = document.getElementById('gif-container');
+            const serverIp = "http://192.168.137.19"; // Replace with your server's IP address
+            if (number === 10 || number === 1) {
                 console.log("you win this time...");
-                window.location.href = "https://media0.giphy.com/media/5jT0jaNDsM6Ik7X9yq/200w.gif";
+                gifContainer.innerHTML = `<img src="${serverIp}/win.gif" alt="You win!">`;
             } else {
                 console.log("you lost! womp womp");
-                window.location.href = "https://www.icegif.com/wp-content/uploads/2023/01/icegif-162.gif"; // rickroll courtesy of copilot ai lmao
-                // TASE
+                gifContainer.innerHTML = `<img src="${serverIp}/lose.gif" alt="You lost!">`;
             }
         }
     </script>
