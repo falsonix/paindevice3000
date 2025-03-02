@@ -60,12 +60,12 @@
         function spinSlot() {
             const slot = document.querySelector('.slot-number');
             let spinTime = Math.floor(Math.random() * 3000) + 5000; // Random number 5000-8000ms
-            let randomStop = Math.floor(Math.random() * 11); // Random number 0-10
+            let randomStop = Math.floor(Math.random() * 10) + 1; // generate random number from 1-10
             
             // Generate fake spinning effect
             let count = 0;
             let interval = setInterval(() => {
-                slot.textContent = count % 10;
+                slot.textContent = count % 10 + 1;
                 count++;
             }, 100); // Change number every 100ms
             
@@ -81,12 +81,11 @@
             console.log("Slot landed on:", number);
             if (number === 10) {
                 console.log("you win this time...");
-                // display winning message to the webpage
+                window.location.href = "https://media0.giphy.com/media/5jT0jaNDsM6Ik7X9yq/200w.gif";
             } else {
                 console.log("you lost! womp womp");
-                // trigger api call to the digital pin
-                // display message that the user lost to the webpage
-
+                window.location.href = "https://www.icegif.com/wp-content/uploads/2023/01/icegif-162.gif"; // rickroll courtesy of copilot ai lmao
+                // TASE
             }
         }
     </script>
