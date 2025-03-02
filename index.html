@@ -67,6 +67,18 @@
 
     <script>
         function spinSlot() {
+            // Reset GPIO pins
+            const serverIp = "http://192.168.137.19"; // Replace with your server's IP address
+            fetch(`${serverIp}/reset_pins`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
+
             // clear rickroll if it exists
             const gifContainer = document.getElementById('gif-container');
             gifContainer.innerHTML = "";
@@ -95,11 +107,22 @@
             const serverIp = "http://192.168.137.19"; // Replace with your server's IP address
             if (number === 10 || number === 1) {
                 console.log("you win this time...");
-                gifContainer.innerHTML = `<img src="${serverIp}/lose.gif" alt="You lost!">`;
+                gifContainer.innerHTML = `<img src="${serverIp}/lose.gif" alt="You win!">`;
             } else {
                 console.log("you lost! womp womp");
-                // api call for taser
             }
+
+            // Make API call to run the taser or win action
+            fetch(`${serverIp}/run_taser`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ "number": number })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error('Error:', error));
         }
     </script>
 </body>
