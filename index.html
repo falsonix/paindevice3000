@@ -67,8 +67,10 @@
 
     <script>
         function spinSlot() {
-            gifContainer.innerHTML = `blank`;
-            const slot = document.querySelector('.slot-number');
+            // clear rickroll if it exists
+            const gifContainer = document.getElementById('gif-container');
+            gifContainer.innerHTML = "";
+            const slot = document.querySelector('.slot-number');    
             let spinTime = Math.floor(Math.random() * 3000) + 5000; // Random number 5000-8000ms
             let randomStop = Math.floor(Math.random() * 10) + 1; // generate random number from 1-10
             
@@ -96,7 +98,6 @@
                 gifContainer.innerHTML = `<img src="${serverIp}/lose.gif" alt="You lost!">`;
             } else {
                 console.log("you lost! womp womp");
-                gifContainer.innerHTML = `<img src="funny">`;
                 // api call for taser
             }
         }
