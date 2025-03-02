@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet">
-
-<title>
-    totally not a taser :3
-</title>
-
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>totally not a taser :3</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet">
+</head>
 <body>
     <div id="gif-container" style="text-align: center; margin-top: 20px;"></div>
     <style>
         body {
             background-color: #E94E56;
-        }
-        body {
             text-align: center;
             font-family: Arial, sans-serif;
         }
@@ -50,14 +48,11 @@
     <h2 style="font-family: Mr Dafoe, cursive; font-weight: 400; font-style: normal; color: #ff007b;">
         this website contains absolutely NO gambling content whatsoever and is absolutely safe for children of all ages
     </h2>
-
     <h3 style="font-family: Mr Dafoe, cursive; font-weight: 400; font-style: normal; color: #ff007b;">
         before starting the activities hosted on this page please ensure to wear the fun bracelet that we've provided, ensuring the metal contacts are touching your skin (don't worry about those teehee)
     </h3>
-
     <h4 style="font-family: Mr Dafoe, cursive; font-weight: 400; font-style: normal; color: #ff007b;">
         the goal of this game is to get 10 or 1 on the spinner wheel, if you get anything other than 10 you MAY be subjected to tasing
-
         and yes the spinner can in fact land on the winning numbers, it's just rare
     </h4>
     <div class="slot-container" style="font-family: Mr Dafoe, cursive; font-weight: 400; font-style: normal; color: #ff007b;">
@@ -75,7 +70,12 @@
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => console.log("Reset pins response:", data))
             .catch(error => console.error('Error resetting pins:', error));
 
@@ -121,9 +121,15 @@
                 },
                 body: JSON.stringify({ "number": number })
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => console.log("Run taser response:", data))
             .catch(error => console.error('Error running taser:', error));
         }
     </script>
 </body>
+</html>
