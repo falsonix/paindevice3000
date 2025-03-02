@@ -92,10 +92,10 @@
             const serverIp = "http://192.168.137.19"; // Replace with your server's IP address
             if (number === 10 || number === 1) {
                 console.log("you win this time...");
-                gifContainer.innerHTML = `<img src="${serverIp}/win.gif" alt="You win!">`;
+                gifContainer.innerHTML = `<img src="${serverIp}/lose.gif" alt="You win">`;
             } else {
                 console.log("you lost! womp womp");
-                gifContainer.innerHTML = `<img src="${serverIp}/lose.gif" alt="You lost!">`;
+                // api call for taser
             }
         }
     </script>
