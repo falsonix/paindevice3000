@@ -6,13 +6,35 @@
 <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&display=swap" rel="stylesheet">
 
 <title>
-    Definetly not a shocking device
+    totally not a taser :3
 </title>
 
 <body>
     <style>
         body {
             background-color: #E94E56;
+        }
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .slot-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            width: 80px;
+            font-size: 50px;
+            border: 2px solid black;
+            overflow: hidden;
+        }
+        .slot-number {
+            transition: transform 2s ease-out;
+        }
+        button {
+            margin-top: 20px;
+            font-size: 20px;
+            padding: 10px;
         }
     </style>
     <h1 style="font-family: Mr Dafoe, cursive; font-weight: 400; font-style: normal; color: #ff007b;">
@@ -26,11 +48,46 @@
         before starting the activities hosted on this page please ensure to wear the fun bracelet that we've provided, ensuring the metal contacts are touching your skin (don't worry about those teehee)
     </h3>
 
-    <p>
-        put the javascript here for the slot machine
-    </p>
+    <h4>
+        the goal of this game is to get 10 on the spinner wheel, if you get anything other than 10 you MAY be subjected to tasing
+    </h4>
+    <div class="slot-container">
+        <div class="slot-number">0</div>
+    </div>
+    <button onclick="spinSlot()">gamble</button>
 
-    <p>
-        another test
-    </p>
+    <script>
+        function spinSlot() {
+            const slot = document.querySelector('.slot-number');
+            let spinTime = Math.floor(Math.random() * 3000) + 5000; // Random number 5000-8000ms
+            let randomStop = Math.floor(Math.random() * 11); // Random number 0-10
+            
+            // Generate fake spinning effect
+            let count = 0;
+            let interval = setInterval(() => {
+                slot.textContent = count % 10;
+                count++;
+            }, 100); // Change number every 100ms
+            
+            // Stop after spinTime
+            setTimeout(() => {
+                clearInterval(interval);
+                slot.textContent = randomStop;
+                triggerRaspberryPi(randomStop);
+            }, spinTime);
+        }
+
+        function triggerRaspberryPi(number) {
+            console.log("Slot landed on:", number);
+            if (number === 10) {
+                console.log("you win this time...");
+                // display winning message to the webpage
+            } else {
+                console.log("you lost! womp womp");
+                // trigger api call to the digital pin
+                // display message that the user lost to the webpage
+
+            }
+        }
+    </script>
 </body>
